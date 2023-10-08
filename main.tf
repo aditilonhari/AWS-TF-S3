@@ -1,6 +1,6 @@
 terraform {
     backend "s3" {
-        key = "global/s3/terraform.tfstate"
+        key = "workspaces-example/terraform.tfstate"
     }
 }
 
@@ -55,6 +55,11 @@ resource "aws_dynamodb_table" "terraform_locks" {
         name = "LockID"
         type = "S"
     }
+}
+
+resource "aws_instance" "example" {
+    ami = "ami-0fb653ca2d3203ac1"
+    instance_type = "t2.micro"
 }
  
 output "s3_bucket_arn" {
